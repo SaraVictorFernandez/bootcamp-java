@@ -1,4 +1,4 @@
-package proyectos.oop.pizzeria.src.main.java.com.example;
+package com.example;
 
 public class Ingrediente {
     int ingredienteId;
