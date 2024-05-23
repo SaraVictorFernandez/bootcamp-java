@@ -41,8 +41,8 @@ public class Main {
     }
 
     private static void refillIngredientes(Pizzeria p){
-        for(int i=0; i<p.list.size(); i++){
-            p.list.get(i).unitCount++;
+        for(int i=0; i<p.ingredientes.size(); i++){
+            p.ingredientes.get(i).unitCount++;
         }
     }
 

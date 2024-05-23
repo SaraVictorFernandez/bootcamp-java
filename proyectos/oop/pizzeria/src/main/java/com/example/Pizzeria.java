@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pizzeria {
-    List<Ingrediente> list;
+    List<Ingrediente> ingredientes;
 
     public Pizzeria(List<Ingrediente> list) {
-        this.list = new ArrayList(list);
+        this.ingredientes = new ArrayList(list);
     }
 
     private void refillIngrediente(int ingredienteId, int quantity){
-        for(int i = 0; i < list.size(); i++){
-            if(list.get(i).ingredienteId == ingredienteId)
-                list.get(i).unitCount += quantity;
+        for(int i = 0; i < ingredientes.size(); i++){
+            if(ingredientes.get(i).ingredienteId == ingredienteId)
+            ingredientes.get(i).unitCount += quantity;
         }
     }
 
@@ -45,8 +45,8 @@ public class Pizzeria {
         for(int i = 0; i < ingredientesGastados.size(); i++){
             Ingrediente gastado = ingredientesGastados.get(i);
             boolean ingredienteEnAlmacen = false;
-            for(int j = 0; j < list.size(); j++){
-                Ingrediente stock = list.get(j);
+            for(int j = 0; j < ingredientes.size(); j++){
+                Ingrediente stock = ingredientes.get(j);
                 if(stock.ingredienteId == gastado.ingredienteId){
                     ingredienteEnAlmacen = true;
                     if(stock.unitCount < gastado.unitCount)
@@ -67,9 +67,9 @@ public class Pizzeria {
             Pizza p = pedido.pizzaList.get(i);
             for(int j = 0; j < p.ingredientesId.size(); j++){
                 int ingredienteGastadoId = p.ingredientesId.get(j);
-                for(int k = 0; k < list.size(); k++){
-                    if(list.get(k).ingredienteId == ingredienteGastadoId){
-                        list.get(k).unitCount--;
+                for(int k = 0; k < ingredientes.size(); k++){
+                    if(ingredientes.get(k).ingredienteId == ingredienteGastadoId){
+                        ingredientes.get(k).unitCount--;
                     }
                 }
             }
@@ -79,9 +79,9 @@ public class Pizzeria {
 
     public String getIngredientsStr(){
         String s = "";
-        for(int i = 0; i < list.size(); i++){
+        for(int i = 0; i < ingredientes.size(); i++){
             if(i > 0) s += ", ";
-            s += list.get(i).name + "-" + list.get(i).unitCount;
+            s += ingredientes.get(i).name + "-" + ingredientes.get(i).unitCount;
         }
         return s;
     }
