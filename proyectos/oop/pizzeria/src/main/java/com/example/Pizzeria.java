@@ -6,8 +6,8 @@ import java.util.List;
 public class Pizzeria {
     List<Ingrediente> ingredientes;
 
-    public Pizzeria(List<Ingrediente> list) {
-        this.ingredientes = new ArrayList(list);
+    public Pizzeria(List<Ingrediente> ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
     private void refillIngrediente(int ingredienteId, int quantity){
@@ -17,9 +17,9 @@ public class Pizzeria {
         }
     }
 
-    public void llenarAlmacen(List<Ingrediente> list) {
-        for(int i = 0; i < list.size(); i++) {
-            refillIngrediente(list.get(i).ingredienteId, list.get(i).unitCount);
+    public void llenarAlmacen(List<Ingrediente> ingredientes) {
+        for(int i = 0; i < ingredientes.size(); i++) {
+            refillIngrediente(ingredientes.get(i).ingredienteId, ingredientes.get(i).unitCount);
         }
     }
 

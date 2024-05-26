@@ -93,5 +93,7 @@ public class Main {
             }
             option = scanner.nextInt();
         }
+
+        scanner.close();
     }
 }
