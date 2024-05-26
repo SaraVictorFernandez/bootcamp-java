@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -10,38 +11,49 @@ public class Main {
         Ingrediente ingrediente = new Ingrediente(1, "Queso", 5, 10);
         Ingrediente ingrediente2 = new Ingrediente(2, "Tomate", 5, 10);
         Ingrediente ingrediente3 = new Ingrediente(3, "Jamón", 5, 10);
-        
+
         List<Ingrediente> ingredientsList = List.of(ingrediente, ingrediente2, ingrediente3);
         return ingredientsList;
     }
 
-    private static Pizza getPizza1(){
+    private static Pizza getPizza1() {
         List<Ingrediente> ingredients = getIngredientes();
         Pizza pizza = new Pizza(List.of(ingredients.get(0).ingredienteId, ingredients.get(1).ingredienteId));
         return pizza;
     }
 
-    private static Pizza getPizza2(){
+    private static Pizza getPizza2() {
         List<Ingrediente> ingredients = getIngredientes();
         Pizza pizza = new Pizza(List.of(ingredients.get(2).ingredienteId, ingredients.get(1).ingredienteId));
         return pizza;
     }
 
-    private static Pedido getPedido1(){
-        Pedido pedido = new Pedido(1, new Date(2024, 5, 21));
+    private static Pedido getPedido1() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 1988);
+        cal.set(Calendar.MONTH, Calendar.JANUARY);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        Date dateRepresentation = cal.getTime();
+        Pedido pedido = new Pedido(1, dateRepresentation);
         pedido.addPizza(getPizza1());
         pedido.addPizza(getPizza2());
         return pedido;
     }
+
     private static Pedido getPedido2(){
-        Pedido pedido = new Pedido(1, new Date(2024, 5, 21));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, 2024);
+        cal.set(Calendar.MONTH, Calendar.MAY);
+        cal.set(Calendar.DAY_OF_MONTH, 21);
+        Date dateRepresentation = cal.getTime();
+        Pedido pedido = new Pedido(1, dateRepresentation);
         pedido.addPizza(getPizza2());
         pedido.addPizza(getPizza2());
         return pedido;
     }
 
-    private static void refillIngredientes(Pizzeria p){
-        for(int i=0; i<p.ingredientes.size(); i++){
+    private static void refillIngredientes(Pizzeria p) {
+        for (int i = 0; i < p.ingredientes.size(); i++) {
             p.ingredientes.get(i).unitCount++;
         }
     }
@@ -68,20 +80,24 @@ public class Main {
         System.out.println("        Queso: 1");
 
         int option = scanner.nextInt();
-        while(option != 0){
+        while (option != 0) {
             switch (option) {
                 case 1:
                     System.out.println(pizzeria.getIngredientsStr());
                     break;
                 case 2:
                     boolean orderResult = pizzeria.pedirPizzas(pedido);
-                    if(orderResult) System.out.println("Se han pedido las pizzas");
-                    else System.out.println("No hay suficientes ingredientes");
+                    if (orderResult)
+                        System.out.println("Se han pedido las pizzas");
+                    else
+                        System.out.println("No hay suficientes ingredientes");
                     break;
                 case 3:
                     orderResult = pizzeria.pedirPizzas(pedido2);
-                    if(orderResult) System.out.println("Se han pedido las pizzas");
-                    else System.out.println("No hay suficientes ingredientes");
+                    if (orderResult)
+                        System.out.println("Se han pedido las pizzas");
+                    else
+                        System.out.println("No hay suficientes ingredientes");
                     break;
 
                 case 4:
