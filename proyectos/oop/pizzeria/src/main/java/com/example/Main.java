@@ -7,11 +7,14 @@ import java.util.Scanner;
 public class Main {
 
     private static List<Ingrediente> getIngredientes() {
+        
         Ingrediente ingrediente = new Ingrediente(1, "Queso", 5, 10);
         Ingrediente ingrediente2 = new Ingrediente(2, "Tomate", 5, 10);
         Ingrediente ingrediente3 = new Ingrediente(3, "Jamón", 5, 10);
+        Ingrediente ingrediente4 = new Ingrediente(4, "Champiñón", 5, 10);
+        Ingrediente ingrediente5 = new Ingrediente(5, "Masa de pizza", 5, 10);
         
-        List<Ingrediente> ingredientsList = List.of(ingrediente, ingrediente2, ingrediente3);
+        List<Ingrediente> ingredientsList = List.of(ingrediente, ingrediente2, ingrediente3, ingrediente4, ingrediente5);
         return ingredientsList;
     }
 
@@ -28,16 +31,16 @@ public class Main {
     }
 
     private static Pedido getPedido1(){
-        Pedido pedido = new Pedido(1, new Date(2024, 5, 21));
-        pedido.addPizza(getPizza1());
-        pedido.addPizza(getPizza2());
-        return pedido;
+        Pedido order = new Pedido(1, new Date(2024, 5, 21));
+        order.addPizza(getPizza1());
+        order.addPizza(getPizza2());
+        return order;
     }
     private static Pedido getPedido2(){
-        Pedido pedido = new Pedido(1, new Date(2024, 5, 21));
-        pedido.addPizza(getPizza2());
-        pedido.addPizza(getPizza2());
-        return pedido;
+        Pedido order = new Pedido(1, new Date(2024, 5, 21));
+        order.addPizza(getPizza2());
+        order.addPizza(getPizza2());
+        return order;
     }
 
     private static void refillIngredientes(Pizzeria p){
@@ -49,23 +52,16 @@ public class Main {
     public static void main(String[] args) {
         List<Ingrediente> ingredientsList = getIngredientes();
         Pizzeria pizzeria = new Pizzeria(ingredientsList);
-        Pedido pedido = getPedido1();
-        Pedido pedido2 = getPedido2();
+        Pedido order1 = getPedido1();
+        Pedido order2 = getPedido2();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Options : ");
-        System.out.println("    0. Exit");
-        System.out.println("    1. See ingredients");
-        System.out.println("    2. Create order 1");
-        System.out.println("        Pizza 1: " + getPizza1().getUsedIngredientsStr(ingredientsList));
-        System.out.println("        Pizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList));
-        System.out.println("    3. Create order 2");
-        System.out.println("        Pizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList));
-        System.out.println("        Pizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList));
-        System.out.println("    4. Add ingredients");
-        System.out.println("        Jamón: 1");
-        System.out.println("        Tomate: 1");
-        System.out.println("        Queso: 1");
+        System.out.println("\t0. Exit");
+        System.out.println("\t1. See ingredients");
+        System.out.println("\t2. Create order 1\n\t\tPizza 1: " + getPizza1().getUsedIngredientsStr(ingredientsList)+"\n\t\tPizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList));
+        System.out.println("\t3. Create order 2\n\t\tPizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList)+"\n\t\tPizza 2: " + getPizza2().getUsedIngredientsStr(ingredientsList));
+        System.out.println("\t4. Add ingredients\n\t\tJamón: 1\n\t\tTomate: 1\n\t\tQueso: 1\n\t\tChampiñón: 1\n\t\tMasa de pizza: 1");
 
         int option = scanner.nextInt();
         while(option != 0){
@@ -74,12 +70,12 @@ public class Main {
                     System.out.println(pizzeria.getIngredientsStr());
                     break;
                 case 2:
-                    boolean orderResult = pizzeria.pedirPizzas(pedido);
+                    boolean orderResult = pizzeria.pedirPizzas(order1);
                     if(orderResult) System.out.println("Se han pedido las pizzas");
                     else System.out.println("No hay suficientes ingredientes");
                     break;
                 case 3:
-                    orderResult = pizzeria.pedirPizzas(pedido2);
+                    orderResult = pizzeria.pedirPizzas(order2);
                     if(orderResult) System.out.println("Se han pedido las pizzas");
                     else System.out.println("No hay suficientes ingredientes");
                     break;
